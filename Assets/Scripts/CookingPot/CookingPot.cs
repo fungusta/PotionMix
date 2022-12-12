@@ -7,6 +7,7 @@ public class CookingPot : MonoBehaviour
     private float volume;
     public CookingPotLiquidColor liquidColor;
     private static readonly float ADDING_VOLUME = 0.25f;
+    private static readonly float MAX_VOLUME = 1f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,11 @@ public class CookingPot : MonoBehaviour
 
     public void AddElement(Element element)
     {
+        if (MAX_VOLUME == volume) //guard clause
+        {
+            return;
+        }
+
         ChangeLiquidColor(element.GetColor(), ADDING_VOLUME);
     }
 
@@ -24,5 +30,11 @@ public class CookingPot : MonoBehaviour
     {
         liquidColor.ChangeColor(otherColor, volume, otherVolume);
         volume += otherVolume;
+    }
+
+    public void DiscardContents()
+    {
+        volume = 0f;
+        liquidColor.ResetColor();
     }
 }

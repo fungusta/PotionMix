@@ -10,10 +10,8 @@ public class CookingPotLiquidColor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Make the starting color to grey
-        color = Color.gray;
         sprite = GetComponent<SpriteRenderer>();
-        sprite.color = color;
+        ResetColor();
     }
 
     public void ChangeColor(Color otherColor, float originalVol, float otherVol)
@@ -25,5 +23,10 @@ public class CookingPotLiquidColor : MonoBehaviour
         color = updatedColor;
 
         sprite.color = color;
+    }
+
+    public void ResetColor()
+    {
+        sprite.color = Color.gray;
     }
 }
